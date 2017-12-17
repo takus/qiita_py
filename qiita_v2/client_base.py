@@ -87,7 +87,10 @@ class QiitaClientBase():
         if response.ok:
             return QiitaResponse(response)
         else:
-            raise QiitaApiException(response.json())
+            try:
+                raise QiitaApiException(response.json())
+            except Exception:
+                raise QiitaApiException(response.text)
 
     def request(self, method, path, params=None, headers=None):
         ''' alias for request with self._request method
