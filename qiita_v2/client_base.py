@@ -77,10 +77,10 @@ class QiitaClientBase():
         method = method.upper()
         if method in ('GET', 'DELETE'):
             response = requests.request(
-                method=method, url=url, headers=headers, params=params)
+                method=method, url=url, headers=headers, params=params, timeout=(10.0, 60.0))
         elif method in ('POST', 'PUT', 'PATCH'):
             response = requests.request(
-                method=method, url=url, headers=headers, json=params)
+                method=method, url=url, headers=headers, json=params, timeout=(10.0, 60.0))
         else:
             raise Exception('Unknown method')
 
